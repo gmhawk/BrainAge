@@ -14,6 +14,7 @@ class App extends React.Component {
     };
     this.handleStart = this.handleStart.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
   }
 
   handleStart() {
@@ -28,12 +29,24 @@ class App extends React.Component {
     });
   }
 
+  handleKeyPress(event) {
+    if (event.key === 'Enter') {
+      this.handleStart();
+    }
+  }
+
   render() {
     let game;
     if (this.state.start) {
       game = <Game userName={this.state.userName} />;
     } else {
-      game = <Signin handleChange={this.handleChange} handleStart={this.handleStart} />;
+      game = (
+        <Signin
+          handleChange={this.handleChange}
+          handleStart={this.handleStart}
+          handleKeyPress={this.handleKeyPress}
+        />
+      );
     }
     return (
       <div id="page">

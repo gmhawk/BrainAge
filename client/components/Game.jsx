@@ -15,6 +15,7 @@ class Game extends React.Component {
     this.handleInput = this.handleInput.bind(this);
     this.checkAnswer = this.checkAnswer.bind(this);
     this.startTime = this.startTime.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
   }
 
   componentDidMount() {
@@ -69,6 +70,12 @@ class Game extends React.Component {
     }
   }
 
+  handleKeyPress(event) {
+    if (event.key === 'Enter') {
+      this.checkAnswer();
+    }
+  }
+
   render() {
     return (
       <div id="game">
@@ -91,7 +98,7 @@ Score:
         </p>
         {this.state.problem}
         <br />
-        <input type="text" onChange={this.handleInput} value={this.state.userInput} />
+        <input type="text" onChange={this.handleInput} value={this.state.userInput} onKeyPress={this.handleKeyPress} />
         <input type="submit" onClick={this.checkAnswer} />
       </div>
     );

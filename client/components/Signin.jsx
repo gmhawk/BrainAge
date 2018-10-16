@@ -6,12 +6,13 @@ class Signin extends React.Component {
     this.state = {};
   }
 
+
   render() {
-    const { handleStart, handleChange } = this.props;
+    const { handleStart, handleChange, handleKeyPress } = this.props;
     return (
       <div id="signin">
         <p>Enter Username: </p>
-        <input type="text" onChange={handleChange} />
+        <input type="text" onChange={handleChange} onKeyPress={handleKeyPress} />
         <button type="button" onClick={handleStart}>Start</button>
       </div>
     );
