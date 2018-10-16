@@ -4,6 +4,7 @@ import React from 'react';
 // import SideNav from './SideNav/SideNav';
 import Game from './Game';
 import Signin from './Signin';
+import Score from './Score';
 
 class App extends React.Component {
   constructor(props) {
@@ -11,10 +12,15 @@ class App extends React.Component {
     this.state = {
       start: false,
       userName: null,
+      finished: false,
+      time: 20,
+      score: 0,
     };
     this.handleStart = this.handleStart.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.checkTime = this.checkTime.bind(this);
+    this.startTime = this.startTime.bind(this);
   }
 
   handleStart() {
@@ -35,18 +41,48 @@ class App extends React.Component {
     }
   }
 
+  checkTime() {
+    setInterval(() => {
+      if (this.state.time === 0) {
+        this.setState(prevState => ({
+          finished: !prevState.finished,
+        }));
+      }
+    }, 1000);
+  }
+
+  startTime() {
+    setInterval(() => {
+      this.setState(prevState => ({
+        time: prevState.time - 1,
+      }));
+    }, 1000);
+  }
+
+
   render() {
     let game;
-    if (this.state.start) {
-      game = <Game userName={this.state.userName} />;
-    } else {
-      game = (
-        <Signin
-          handleChange={this.handleChange}
-          handleStart={this.handleStart}
-          handleKeyPress={this.handleKeyPress}
-        />
-      );
+    if (!this.state.finished) {
+      if (this.state.start) {
+        game = (
+          <Game
+            userName={this.state.userName}
+            checkTime={this.checkTime}
+            startTime={this.startTime}
+            time={this.state.time}
+          />
+        );
+      } else {
+        game = (
+          <Signin
+            handleChange={this.handleChange}
+            handleStart={this.handleStart}
+            handleKeyPress={this.handleKeyPress}
+          />
+        );
+      }
+    } else if (this.state.finished) {
+      game = <Score />;
     }
     return (
       <div id="page">

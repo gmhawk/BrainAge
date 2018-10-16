@@ -1,4 +1,5 @@
 import React from 'react';
+import Score from './Score';
 
 class Game extends React.Component {
   constructor(props) {
@@ -9,12 +10,10 @@ class Game extends React.Component {
       answer: null,
       userInput: '',
       score: 0,
-      time: 20,
     };
     this.getRandomInt = this.getRandomInt.bind(this);
     this.handleInput = this.handleInput.bind(this);
     this.checkAnswer = this.checkAnswer.bind(this);
-    this.startTime = this.startTime.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
   }
 
@@ -27,7 +26,8 @@ class Game extends React.Component {
       answer: solution,
       userName: this.props.userName,
     });
-    this.startTime();
+    this.props.startTime();
+    this.props.checkTime();
   }
 
   getRandomInt(max) {
@@ -40,15 +40,6 @@ class Game extends React.Component {
       userInput: e.target.value,
     });
   }
-
-  startTime() {
-    setInterval(() => {
-      this.setState(prevState => ({
-        time: prevState.time - 1,
-      }));
-    }, 1000);
-  }
-
 
   checkAnswer() {
     const { userInput } = this.state;
@@ -80,19 +71,20 @@ class Game extends React.Component {
     return (
       <div id="game">
         <div>
-Time:
+          Time:
           {' '}
-          {this.state.time}
+          {this.props.time}
         </div>
         <p>
-Player:
+          Player:
           <span>
             {' '}
-            {this.state.userName}
+            {this.props.userName}
           </span>
         </p>
         <p>
-Score:
+          {console.log(this.props)}
+          Score:
           {' '}
           {this.state.score}
         </p>
