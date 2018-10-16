@@ -1,0 +1,40 @@
+* {
+    box-sizing: border-box;
+}
+
+span {
+  color: green;
+}
+
+#page {
+  padding: 5%;
+  text-align: center;
+  font-size: 2em;
+}
+
+#featured {
+  padding: 10%;
+  background-color: lightblue;
+  text-align: center;
+}
+
+#mainPage {
+  padding: 13.5%;
+  background-color: lightgreen;
+  text-align: center;
+}
+
+#sideNav {
+  position: inherit;
+  /* padding: 5%; */
+  top: 0;
+  background-color: lightpink;
+  text-align: center;
+  float: left;
+}
+
+img {
+  position: relative;
+  width: 500px;
+  height: 284px;
+}
