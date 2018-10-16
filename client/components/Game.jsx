@@ -5,7 +5,6 @@ class Game extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userName: null,
       problem: null,
       answer: null,
       userInput: '',
@@ -24,7 +23,6 @@ class Game extends React.Component {
     this.setState({
       problem: `${left} x ${right}`,
       answer: solution,
-      userName: this.props.userName,
     });
     this.props.startTime();
     this.props.checkTime();
@@ -83,7 +81,6 @@ class Game extends React.Component {
           </span>
         </p>
         <p>
-          {console.log(this.props)}
           Score:
           {' '}
           {this.state.score}

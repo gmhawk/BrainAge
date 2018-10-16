@@ -10,7 +10,8 @@ class Score extends React.Component {
   render() {
     return (
       <div id="score">
-        Your brain age is: 18 years old!
+        Your brain age is: 69 years old!
+        <img src="./images/old_person.jpg" alt="Score" />
       </div>
     );
   }
