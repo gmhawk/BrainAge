@@ -13,7 +13,7 @@ class App extends React.Component {
       start: false,
       userName: null,
       finished: false,
-      time: 20,
+      time: 45,
       score: 0,
     };
     this.handleStart = this.handleStart.bind(this);
