@@ -7,8 +7,6 @@ const app = express();
 app.use('/', express.static('public'));
 app.use(bodyParser.json());
 
-let counter = 1;
-
 app.get('/users', (req, res) => {
   getUsers((err, result) => {
     if (err) {
@@ -27,7 +25,6 @@ app.post('/users', (req, res) => {
       res.send('Post Request received ', result);
     }
   });
-  counter += 1;
 });
 
 const PORT = process.env.PORT || 3000;
