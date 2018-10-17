@@ -20,7 +20,7 @@ app.get('/users', (req, res) => {
 });
 
 app.post('/users', (req, res) => {
-  addUser(counter, req.body.user, (err, result) => {
+  addUser(req.body.user, (err, result) => {
     if (err) {
       res.status(500).send(err);
     } else {

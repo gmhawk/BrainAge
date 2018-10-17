@@ -16,7 +16,7 @@ client.connect((err, results) => {
   }
 });
 
-const addUser = (id, user, callback) => {
+const addUser = (user, callback) => {
   client.query(`INSERT INTO users(id, user) VALUES(${id}, ${user})`, callback);
 };
 
