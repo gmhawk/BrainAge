@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 
 app.post('/users', (req, res) => {
   console.log(req.body.user);
-  fs.appendFile('./database/users.txt', req.body.user, (err) => {
+  fs.appendFile('./database/db.csv', `${req.body.user}\n`, (err) => {
     if (err) {
       res.status(500).send(err);
     }

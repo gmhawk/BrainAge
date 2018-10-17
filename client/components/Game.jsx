@@ -1,5 +1,4 @@
 import React from 'react';
-import Score from './Score';
 
 class Game extends React.Component {
   constructor(props) {

@@ -1,7 +1,5 @@
 import React from 'react';
-// import Featured from './Featured/Featured';
-// import MainPage from './MainPage/MainPage';
-// import SideNav from './SideNav/SideNav';
+import axios from 'axios';
 import Game from './Game';
 import Signin from './Signin';
 import Score from './Score';
@@ -24,6 +22,16 @@ class App extends React.Component {
   }
 
   handleStart() {
+    axios.post('/users', {
+      user: this.state.userName,
+    })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
     this.setState(prevState => ({
       start: !prevState.start,
     }));
@@ -82,7 +90,11 @@ class App extends React.Component {
         );
       }
     } else if (this.state.finished) {
-      game = <Score />;
+      game = (
+        <Score
+          score={this.state.score}
+        />
+      );
     }
     return (
       <div id="page">
@@ -92,7 +104,4 @@ class App extends React.Component {
   }
 }
 
-// <Featured />
-// <MainPage />
-// <SideNav />
 export default App;
