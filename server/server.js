@@ -1,10 +1,21 @@
 const express = require('express');
-const axios = require('axios');
-// const bodyParser = require('body-parser');
+const fs = require('fs');
+const bodyParser = require('body-parser');
 
 const app = express();
 
 app.use('/', express.static('public'));
+app.use(bodyParser.json());
 
-const PORT = process.env.PORT;
+app.post('/users', (req, res) => {
+  console.log(req.body.user);
+  fs.appendFile('./database/users.txt', req.body.user, (err) => {
+    if (err) {
+      res.status(500).send(err);
+    }
+  });
+  res.send('got it man!');
+});
+
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
