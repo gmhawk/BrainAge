@@ -20,4 +20,8 @@ const addUser = (id, user, callback) => {
   client.query(`INSERT INTO users(id, user) VALUES(${id}, ${user})`, callback);
 };
 
-module.exports = { addUser };
+const getUsers = (callback) => {
+  client.query('SELECT * FROM users', callback);
+};
+
+module.exports = { addUser, getUsers };
