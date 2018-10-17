@@ -1,20 +1,23 @@
 const express = require('express');
-const fs = require('fs');
 const bodyParser = require('body-parser');
+const { addUser } = require('../database/db.js');
 
 const app = express();
 
 app.use('/', express.static('public'));
 app.use(bodyParser.json());
 
+let counter = 1;
+
 app.post('/users', (req, res) => {
-  console.log(req.body.user);
-  fs.appendFile('./database/db.csv', `${req.body.user}\n`, (err) => {
+  addUser(counter, req.body.user, (err, result) => {
     if (err) {
       res.status(500).send(err);
+    } else {
+      res.send('Post Request received ', result);
     }
   });
-  res.send('got it man!');
+  counter += 1;
 });
 
 const PORT = process.env.PORT || 3000;
