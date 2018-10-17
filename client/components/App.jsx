@@ -21,6 +21,16 @@ class App extends React.Component {
     this.startTime = this.startTime.bind(this);
   }
 
+  componentDidMount() {
+    axios.get('/users')
+      .then(({ data }) => {
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   handleStart() {
     axios.post('/users', {
       user: this.state.userName,
