@@ -6,5 +6,5 @@ const app = express();
 
 app.use('/', express.static('public'));
 
-const PORT = 1337;
+const PORT = process.env.PORT;
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
